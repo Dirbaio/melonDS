@@ -34,14 +34,14 @@
 // matching function names, so this is more convenient to deal with
 
 #define DECLPROC(type, name)  \
-    PFN##type##PROC name ;
+    PFN##type##PROC _melonds_##name ;
 
 #define DECLPROC_EXT(type, name)  \
-    extern PFN##type##PROC name ;
+    extern PFN##type##PROC _melonds_##name ;
 
 #define LOADPROC(type, name)  \
-    name = (PFN##type##PROC)Platform::GL_GetProcAddress(#name); \
-    if (!name) { printf("OpenGL: " #name " not found\n"); return false; }
+    _melonds_##name = (PFN##type##PROC)Platform::GL_GetProcAddress(#name); \
+    if (!_melonds_##name) { printf("OpenGL: " #name " not found\n"); return false; }
 
 
 // if you need more OpenGL functions, add them to the macronator here
@@ -126,6 +126,57 @@
 
 
 DO_PROCLIST(DECLPROC_EXT);
+
+#define glGenFramebuffers          _melonds_glGenFramebuffers
+#define glDeleteFramebuffers       _melonds_glDeleteFramebuffers
+#define glBindFramebuffer          _melonds_glBindFramebuffer
+#define glFramebufferTexture       _melonds_glFramebufferTexture
+#define glBlitFramebuffer          _melonds_glBlitFramebuffer
+#define glCheckFramebufferStatus   _melonds_glCheckFramebufferStatus
+#define glGenBuffers               _melonds_glGenBuffers
+#define glDeleteBuffers            _melonds_glDeleteBuffers
+#define glBindBuffer               _melonds_glBindBuffer
+#define glMapBuffer                _melonds_glMapBuffer
+#define glMapBufferRange           _melonds_glMapBufferRange
+#define glUnmapBuffer              _melonds_glUnmapBuffer
+#define glBufferData               _melonds_glBufferData
+#define glBufferSubData            _melonds_glBufferSubData
+#define glBindBufferBase           _melonds_glBindBufferBase
+#define glGenVertexArrays          _melonds_glGenVertexArrays
+#define glDeleteVertexArrays       _melonds_glDeleteVertexArrays
+#define glBindVertexArray          _melonds_glBindVertexArray
+#define glEnableVertexAttribArray  _melonds_glEnableVertexAttribArray
+#define glDisableVertexAttribArray _melonds_glDisableVertexAttribArray
+#define glVertexAttribPointer      _melonds_glVertexAttribPointer
+#define glVertexAttribIPointer     _melonds_glVertexAttribIPointer
+#define glBindAttribLocation       _melonds_glBindAttribLocation
+#define glBindFragDataLocation     _melonds_glBindFragDataLocation
+#define glCreateShader             _melonds_glCreateShader
+#define glShaderSource             _melonds_glShaderSource
+#define glCompileShader            _melonds_glCompileShader
+#define glCreateProgram            _melonds_glCreateProgram
+#define glAttachShader             _melonds_glAttachShader
+#define glLinkProgram              _melonds_glLinkProgram
+#define glUseProgram               _melonds_glUseProgram
+#define glGetShaderiv              _melonds_glGetShaderiv
+#define glGetShaderInfoLog         _melonds_glGetShaderInfoLog
+#define glGetProgramiv             _melonds_glGetProgramiv
+#define glGetProgramInfoLog        _melonds_glGetProgramInfoLog
+#define glDeleteShader             _melonds_glDeleteShader
+#define glDeleteProgram            _melonds_glDeleteProgram
+#define glUniform1i                _melonds_glUniform1i
+#define glUniform1ui               _melonds_glUniform1ui
+#define glUniform4ui               _melonds_glUniform4ui
+#define glUniformBlockBinding      _melonds_glUniformBlockBinding
+#define glGetUniformLocation       _melonds_glGetUniformLocation
+#define glGetUniformBlockIndex     _melonds_glGetUniformBlockIndex
+#define glBindImageTexture         _melonds_glBindImageTexture
+#define glDrawBuffers              _melonds_glDrawBuffers
+#define glBlendFuncSeparate        _melonds_glBlendFuncSeparate
+#define glBlendEquationSeparate    _melonds_glBlendEquationSeparate
+#define glColorMaski               _melonds_glColorMaski
+#define glMemoryBarrier            _melonds_glMemoryBarrier
+#define glGetStringi               _melonds_glGetStringi
 
 
 bool OpenGL_Init();
